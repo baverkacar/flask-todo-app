@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+    <div style = "margin-top: 100px;" class = "container" >
+        <h3>Todo List</h3>
+        <hr>
+        
+
+        <form action="/add" method = "post">
+            <div class="form-group">
+                    <label for="formGroupExampleInput">Todo Title</label>
+                    <input type="text" class="form-control" name = "title" id="formGroupExampleInput" placeholder="Enter todo"><br>
+                    <button type="submit" class="btn btn-warning">Add Todo</button>
+                    <hr>
+            </div>
+        </form>
+        {% if todos == [] %}
+        <div class="alert alert-danger" role="alert">
+                You do not have any Todo for today.
+        </div>
+        {% else %}
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Update Status</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for todo in todos %}
+                  <tr>
+                        <th scope="row">{{todo.id}}</th>
+                        <td>{{todo.name}}</td>
+                        {% if todo.status == False %}
+                        <td>in Process</td>
+                        {% else %}
+                        <td>Completed</td>
+                        {% endif %}
+                        
+                        <td><a href="/complete/{{todo.id}}" class ="btn btn-info">Complete</a></td>
+                        <td><a href="/delete/{{todo.id}}" class ="btn btn-danger">Delete</a></td>
+  
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+        {% endif %}
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
