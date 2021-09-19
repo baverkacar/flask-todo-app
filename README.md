@@ -27,6 +27,6 @@ from flask_sqlalchemy import SQLAlchemy
   $ FLASK_APP=app.py flask run 
 ```
   
-## Ekran Görüntüleri
+## Screenshot
 
 ![gif](https://github.com/baverkacar/flask-todo-app/blob/main/todoapp.gif?raw=true)
